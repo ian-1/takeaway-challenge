@@ -1,4 +1,4 @@
-Takeaway Challenge
+Takeaway
 ==================
 ```
                             _________
@@ -12,22 +12,34 @@ Takeaway Challenge
       '. '' .'    \:.....:--'.-'' .'
        ':..:'                ':..:'
 
- ```
+```
 
-Instructions
--------
+**Takeaway** models and controls the flow of planes at an airport. The planes can land and take off provided that there is spare capacity at the airport and that the weather is not stormy. The weather is set using a random number generator. 
 
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp's**]([http://makers.tech](http://makers.tech/)) Airport Challenge (from which this repository was forked on 2021-April-04).
 
-Task
+In my tests I use **doubles** so one class spec is not testing against another class. I also use **stubs** to override random weather and ensure consistent test behaviour.
+
+## Installation
+
+This program is designed to be run from [irb](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell) (or a similar interactive Ruby environment) and requires **Ruby version 2.6.5** - which will give you access to irb. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setup Ruby**](https://www.codecademy.com/articles/ruby-setup). 
+
+## Usage
+
+```bash
+# open irb
+irb -r ./lib/airport -r ./lib/plane
+# create a
+irb(main):001 > 
+
+```
+
+Design
 -----
 
-* Fork this repo
-* Run the command 'bundle' in the project directory to ensure you have all the gems
-* Write a Takeaway program with the following user stories:
+### User Stories
+
+Below are the user stories as worked out in collaboration with the client (these were provided in the challenge):
 
 ```
 As a customer
@@ -47,6 +59,58 @@ So that I am reassured that my order will be delivered on time
 I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered
 ```
 
+### Domain Model
+
+| **Class**                           | Dish                               |
+| ----------------------------------- | ---------------------------------- |
+| **Properties (instance variables)** | name, price                        |
+| **Actions (methods)**               |                                    |
+|                                     |                                    |
+| **Class**                           | **Order**                          |
+| **Properties (instance variables)** | Dish_list, bill, delivery          |
+| **Actions (methods)**               | add, remove, see_dishes, confirm   |
+|                                     |                                    |
+| **Class**                           | **Bill**                           |
+| **Properties (instance variables)** | total                              |
+| **Actions (methods)**               | Add, remove, matches_sum           |
+|                                     |                                    |
+| **Class**                           | **Delivery**                       |
+| **Properties (instance variables)** | text, delivery_time                |
+| **Actions (methods)**               | Send_text, calculate_delivery_time |
+|                                     |                                    |
+| **Class**                           | **TextMessage**                    |
+| **Properties (instance variables)** | Text_content                       |
+| **Actions (methods)**               | send                               |
+
+## Running Tests
+
+```bash
+# To run tests
+rspec
+```
+
+## Development / Contributing
+
+This project was created as a learning exercise as part of the Makers Academy Coding Bootcamp. 
+
+No further development is planned on this project and pull requests are not sought (sorry🤗).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * Hints on functionality to implement:
   * Ensure you have a list of dishes with prices
   * The text should state that the order was placed successfully and that it will be delivered 1 hour from now, e.g. "Thank you! Your order was placed and will be delivered before 18:52".
@@ -56,28 +120,12 @@ I would like to receive a text such as "Thank you! Your order was placed and wil
   * Make sure that your Takeaway is thoroughly tested and that you use mocks and/or stubs, as necessary to not to send texts when your tests are run
   * However, if your Takeaway is loaded into IRB and the order is placed, the text should actually be sent
   * Note that you can only send texts in the same country as you have your account. I.e. if you have a UK account you can only send to UK numbers.
-
 * Advanced! (have a go if you're feeling adventurous):
   * Implement the ability to place orders via text message.
-
 * A free account on Twilio will only allow you to send texts to "verified" numbers. Use your mobile phone number, don't worry about the customer's mobile phone.
 
 > :warning: **WARNING:** think twice before you push your **mobile number** or **Twilio API Key** to a public space like GitHub :eyes:
 >
 > :key: Now is a great time to think about security and how you can keep your private information secret. You might want to explore environment variables.
 
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
 
-
-In code review we'll be hoping to see:
-
-* All tests passing
-* High [Test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) (>95% is good)
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Referring to this rubric in advance will make the challenge somewhat easier.  You should be the judge of how much challenge you want this at this moment.
-
-Notes on Test Coverage
-------------------
-
-You can see your [test coverage](https://github.com/makersacademy/course/blob/master/pills/test_coverage.md) when you run your tests.
